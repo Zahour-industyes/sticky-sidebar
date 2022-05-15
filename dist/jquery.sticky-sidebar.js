@@ -9,7 +9,7 @@ var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 
 
 
 function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+	return x && x.__esModule ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
@@ -24,6 +24,8 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
     factory(exports);
   }
 })(commonjsGlobal, function (exports) {
+  'use strict';
+
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
@@ -54,7 +56,7 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
 
   /**
    * Sticky Sidebar JavaScript Plugin.
-   * @version 3.3.4
+   * @version 3.3.1
    * @author Ahmed Bouhuolia <a.bouhuolia@gmail.com>
    * @license The MIT License (MIT)
    */
@@ -323,9 +325,7 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
       }, {
         key: 'isSidebarFitsViewport',
         value: function isSidebarFitsViewport() {
-          var dims = this.dimensions;
-          var offset = this.scrollDirection === 'down' ? dims.lastBottomSpacing : dims.lastTopSpacing;
-          return this.dimensions.sidebarHeight + offset < this.dimensions.viewportHeight;
+          return this.dimensions.sidebarHeight < this.dimensions.viewportHeight;
         }
       }, {
         key: 'observeScrollDir',
@@ -462,9 +462,6 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
           if (this._breakpoint) return;
 
           force = this._reStyle || force || false;
-
-          var offsetTop = this.options.topSpacing;
-          var offsetBottom = this.options.bottomSpacing;
 
           var affixType = this.getAffixType();
           var style = this._getStyle(affixType);
@@ -690,6 +687,8 @@ var jquery_stickySidebar = createCommonjsModule(function (module, exports) {
     factory(stickySidebar);
   }
 })(commonjsGlobal, function (_stickySidebar) {
+  'use strict';
+
   var _stickySidebar2 = _interopRequireDefault(_stickySidebar);
 
   function _interopRequireDefault(obj) {
